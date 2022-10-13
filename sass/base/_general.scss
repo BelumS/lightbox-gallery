@@ -6,5 +6,7 @@ body {
 }
 
 .container {
-    @include fullBox;
+    width: 100vw;
+    height: 100vh;
+    @include gridCenter;
 }

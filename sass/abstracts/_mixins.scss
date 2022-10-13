@@ -65,28 +65,40 @@
   margin: 0 auto;
 }
 
-@mixin flexCenter {
-  display: flex;
-  flex-direction: row;
+@mixin centerProps {
   place-items: center;
   place-content: center;
 }
 
+@mixin flexCenter {
+  display: flex;
+  flex-direction: row;
+  @include centerProps;
+}
+
 @mixin flexCenterColumn {
-  @include flexCenter;
+  display: flex;
   flex-direction: column;
+  @include centerProps;
 }
 
 @mixin gridCenter {
   display: grid;
-  place-items: center;
-  place-content: center;
+  @include centerProps;
 }
 
 // FORMS 
 @mixin formControlReset {
   border: none;
   outline: none;
+}
+
+// IMAGES
+@mixin respImage {
+    display: block;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover;
 }
 
 // ANIMATIONS
@@ -114,11 +126,6 @@
 
 @mixin fadeAnimation($name) {
   animation: $name 1s linear forwards;
-}
-
-// Removes the element from the DOM
-@mixin delete {
-  display: none !important;
 }
 
 // MEDIA QUERY MANAGER

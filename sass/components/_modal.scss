@@ -1,0 +1,46 @@
+@use "../abstracts/functions"as *;
+@use "../abstracts/mixins"as *;
+@use "../abstracts/typography"as *;
+
+.overlay {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  inset: 0;
+  background-color: blackShadow(0.7);
+  z-index: 3;
+}
+
+.modal {
+  position: fixed;
+  top: 10%;
+  left: 30%;
+  width: max-content;
+  height: max-content;
+  background-color: clr(neutral, light);
+  box-shadow: 1px 1px 3px 2px blackShadow(0.3);
+  z-index: 5;
+
+  &__body {
+    padding: 20px;
+    padding-top: 0;
+    width: 800px;
+    height: 700px;
+    overflow: hidden;
+  }
+
+  &__close {
+    position: relative;
+    top: 5px;
+    right: -94%;
+    font-size: 40px;
+    text-shadow: 1px 1px 5px blackShadow(0.5);
+    color: clr(neutral, dark);
+    cursor: pointer;
+    transition: color 200ms;
+
+    &:is(:hover, :active) {
+      color: hsl(0 0% 25%);
+    }
+  }
+}

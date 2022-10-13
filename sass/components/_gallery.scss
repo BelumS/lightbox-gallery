@@ -1,0 +1,40 @@
+@use "../abstracts/functions" as *;
+@use "../abstracts/mixins" as *;
+@use "../abstracts/typography" as *;
+
+.gallery {
+    display: flex;
+    gap: 1rem;
+
+    &__item {
+        width: max-content;
+        background-color: hsl(0 0% 80%);
+        padding: 7px;
+        box-shadow: 1px 1px 3px 2px blackShadow(0.3);
+        cursor: pointer;
+        transition: scale 300ms;
+
+        &:is(:hover, :active) {
+            scale: 1.02;
+        }
+
+        .gallery__img {
+            width: 200px;
+            height: 200px;
+            @include respImage;
+            aspect-ratio: 1 / 1;
+            transition: filter 300ms;
+
+            &:is(:hover, :active) {
+                filter: grayscale(1);
+            }
+        }
+    }
+}
+
+.expanded-image {
+    @include respImage;
+    object-position: center;
+    width: 100%;
+    height: 100%;
+}

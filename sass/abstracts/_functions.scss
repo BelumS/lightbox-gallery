@@ -4,7 +4,7 @@
 @use "sizes" as *;
 
 @function blackShadow($al) {
-  @return hsl(0 0% 0% / $al);
+  @return hsla(0, 0%, 0%, $al);
 }
 
 @function clr($color, $shade) {

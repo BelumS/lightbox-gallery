@@ -10,12 +10,8 @@
     @include hide;
 }
 
-.mount {
-    display: block !important;
-}
-
-.umount {
-    @include delete;
+.unmount {
+    display: none !important;
 }
 
 .half-opacity {
