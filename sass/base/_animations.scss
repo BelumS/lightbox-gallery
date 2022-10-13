@@ -1,0 +1,51 @@
+@use "../abstracts/typography" as *;
+@use "../abstracts/functions" as *;
+@use "../abstracts/mixins" as *;
+
+.show {
+    @include show;
+}
+
+.hide {
+    @include hide;
+}
+
+.mount {
+    display: block !important;
+}
+
+.umount {
+    @include delete;
+}
+
+.half-opacity {
+    opacity: 0.5;
+}
+
+.fade-out {
+    @include fadeAnimation(fadeOut);
+}
+
+.fade-in {
+    @include fadeAnimation(fadeIn);
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}

@@ -1,0 +1,10 @@
+@use "../abstracts/functions" as *;
+@use "../abstracts/mixins" as *;
+
+body {
+    min-height: 100vh;
+}
+
+.container {
+    @include fullBox;
+}

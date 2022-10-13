@@ -1,0 +1,142 @@
+@use "sass:meta";
+@use "sass:math";
+@use "sass:map";
+@use "breakpoints" as *;
+
+//DIMENSIONS
+@mixin box($val) {
+  width: $val;
+  height: $val;
+};
+
+@mixin fullBox {
+  @include box(100%);
+}
+
+@mixin inheritedBox {
+  width: inherit;
+  height: inherit;
+}
+
+//COLORS
+@mixin theme($bgColor, $textColor)  {
+  background-color: $bgColor;
+  color: $textColor;
+}
+
+@mixin boxShadowBlack($x, $y, $blur, $spread, $al) {
+  box-shadow: $x $y $blur $spread blackShadow($al);
+}
+
+// IMAGES
+@mixin responsiveImage {
+  object-fit: cover;
+  min-height: 100%;
+}
+
+// BORDERS
+@mixin circleRadius {
+  border-radius: 50%;
+}
+
+// POSITIONING
+@mixin absBehind {
+  @include absTopLeft(0, 0);
+}
+
+@mixin absTopLeft($top, $left) {
+  position: absolute;
+  top: $top;
+  left: $left;
+}
+
+@mixin absCenter {
+  @include absTopLeft(50%, 50%);
+  translate: -50%, -50%;
+}
+
+@mixin fixCenter {
+  position: fixed;
+  inset: 0;
+}
+
+// ALIGNMENT
+@mixin marginCenter {
+  margin: 0 auto;
+}
+
+@mixin flexCenter {
+  display: flex;
+  flex-direction: row;
+  place-items: center;
+  place-content: center;
+}
+
+@mixin flexCenterColumn {
+  @include flexCenter;
+  flex-direction: column;
+}
+
+@mixin gridCenter {
+  display: grid;
+  place-items: center;
+  place-content: center;
+}
+
+// FORMS 
+@mixin formControlReset {
+  border: none;
+  outline: none;
+}
+
+// ANIMATIONS
+@mixin defaultTransition {
+  transition: all 200ms;
+}
+
+@mixin defaultTransitionTime($time) {
+  transition: all $time;
+}
+
+@mixin customTransition($prop, $time) {
+  transition: $prop $time;
+}
+
+@mixin hide {
+  opacity: 0;
+  visibility: hidden;
+}
+
+@mixin show {
+  opacity: 1;
+  visibility: visible;
+}
+
+@mixin fadeAnimation($name) {
+  animation: $name 1s linear forwards;
+}
+
+// Removes the element from the DOM
+@mixin delete {
+  display: none !important;
+}
+
+// MEDIA QUERY MANAGER
+@mixin mq($size) {
+  @if map.has-key($breakpoints, $size) {
+    $breakpoint: map-get($breakpoints, $size);
+    @media screen and (min-width: $breakpoint) {
+      @content;
+    }
+  } @else if meta.type-of($size) == number {
+    @if math.is-unitless($size) {
+      @error 'when using a number with @mq() make sure to include a unit';
+    } @else {
+      @media screen and (min-width: $size) {
+        @content;
+      }
+    }
+  } @else {
+    @error 'the keyword #{$size} is not in the $breakpoints map';
+  }
+}
