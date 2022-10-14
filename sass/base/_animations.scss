@@ -19,11 +19,19 @@
 }
 
 .fade-out {
-    @include fadeAnimation(fadeOut);
+    @include forwardAnimation(fadeOut);
 }
 
 .fade-in {
-    @include fadeAnimation(fadeIn);
+    @include forwardAnimation(fadeIn);
+}
+
+.slide-in {
+    @include forwardAnimation(slideIn);
+}
+
+.slide-out {
+    @include forwardAnimation(slideOut);
 }
 
 @keyframes fadeOut {
@@ -43,5 +51,25 @@
 
     to {
         opacity: 1;
+    }
+}
+
+@keyframes slideIn {
+    from {
+        translate: -100% 0;
+    }
+
+    to {
+        translate: 0 0;
+    }
+}
+
+@keyframes slideOut {
+    from {
+        translate: 0 0;
+    }
+
+    to {
+        translate: -100% 0;
     }
 }

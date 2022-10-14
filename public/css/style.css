@@ -55,6 +55,14 @@ body {
   animation: fadeIn 1s linear forwards;
 }
 
+.slide-in {
+  animation: slideIn 1s linear forwards;
+}
+
+.slide-out {
+  animation: slideOut 1s linear forwards;
+}
+
 @keyframes fadeOut {
   from {
     opacity: 1;
@@ -69,6 +77,22 @@ body {
   }
   to {
     opacity: 1;
+  }
+}
+@keyframes slideIn {
+  from {
+    translate: -100% 0;
+  }
+  to {
+    translate: 0 0;
+  }
+}
+@keyframes slideOut {
+  from {
+    translate: 0 0;
+  }
+  to {
+    translate: -100% 0;
   }
 }
 .overlay {
@@ -93,8 +117,8 @@ body {
 .modal__body {
   padding: 20px;
   padding-top: 0;
-  width: 800px;
-  height: 700px;
+  width: max-content;
+  height: max-content;
   overflow: hidden;
 }
 .modal__close {
@@ -146,6 +170,86 @@ body {
   max-height: 100%;
   object-fit: cover;
   object-position: center;
+  width: 100%;
+  height: 100%;
+}
+
+.slider {
+  padding: 20px;
+  padding-top: 0;
+  width: 550px;
+  height: 550px;
+  position: relative;
+}
+.slider__control-box {
+  z-index: 10;
+  position: absolute;
+  top: 45%;
+}
+.slider__control-box .slider__control {
+  font-size: 60px;
+  font-weight: bold;
+  width: max-content;
+  height: max-content;
+  text-shadow: 1px 2px 5px hsla(0deg, 0%, 0%, 0.7);
+  cursor: pointer;
+  transition: all 200ms;
+  padding: 1px;
+}
+.slider__control-box .slider__control:is(:hover, :active) {
+  color: hsl(0deg, 0%, 30%);
+  font-size: 61px;
+}
+.slider__control-box--left {
+  left: 0;
+}
+.slider__control-box--right {
+  right: 0;
+}
+.slider__dots {
+  display: flex;
+  flex-direction: row;
+  place-items: center;
+  place-content: center;
+  gap: 10px;
+  width: max-content;
+  height: max-content;
+  margin: 0 auto;
+  z-index: 10;
+}
+.slider__dots .slider__dot {
+  background-color: hsla(0deg, 0%, 50%, 0.2);
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  box-shadow: 1px 1px 3px 1px hsla(0deg, 0%, 0%, 0.4);
+  transition: all 300ms;
+  cursor: pointer;
+}
+.slider__dots .slider__dot:is(:hover, :active) {
+  box-shadow: 1px 1px 4px 2px hsla(0deg, 0%, 0%, 0.4);
+  scale: 1.01;
+}
+.slider__dots .slider__dot--active {
+  background-color: hsla(0deg, 0%, 40%, 0.8);
+}
+
+.slide {
+  border: 3px solid hsla(0deg, 0%, 50%, 0.4);
+  width: 100%;
+  height: 100%;
+  transition: translate 400ms;
+}
+.slide--active {
+  translate: 0 0;
+}
+.slide--2 {
+  translate: 120% -100%;
+}
+.slide--3 {
+  translate: 240% -100%;
+}
+.slide > img {
   width: 100%;
   height: 100%;
 }

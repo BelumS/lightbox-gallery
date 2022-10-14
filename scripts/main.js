@@ -40,17 +40,35 @@ gallery.addEventListener('click', e => {
 });
 
 const toggleModal = e => {
-  if (!removeClass(overlay, HIDE_MODAL_CLASS)) {
+  const element = e.target;
+
+  if (
+    !removeClass(overlay, HIDE_MODAL_CLASS) &&
+    !hasClass(element, 'modal__header') &&
+    !hasClass(element, 'slider') &&
+    !hasClass(element, 'slider__dot') &&
+    !hasClass(element, 'slider__control') &&
+    !hasClass(element, 'slide') &&
+    !(element instanceof HTMLImageElement) &&
+    !hasClass(element, 'modal__body')
+  ) {
     addClass(overlay, HIDE_MODAL_CLASS);
   } else {
     removeClass(overlay, HIDE_MODAL_CLASS);
   }
 };
 
+/**
+ * TODO: Use scale to make modal appear from nothing with an animation?
+ */
+
 modalCloseButton.addEventListener('click', toggleModal);
 overlay.addEventListener('click', toggleModal);
 
-
+/**
+ * Adds content to the modal
+ * @param {HTMLImageElement} imageElement 
+ */
 const createModalContent = imageElement => {
     const expandedImage = document.createElement("img");
     expandedImage.classList.add("expanded-image");
@@ -65,3 +83,5 @@ const createModalContent = imageElement => {
         modalBody.prepend(expandedImage); //add a new image
     }
 };
+
+// CAROUSEL

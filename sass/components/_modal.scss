@@ -24,8 +24,9 @@
   &__body {
     padding: 20px;
     padding-top: 0;
-    width: 800px;
-    height: 700px;
+    // width: 800px;
+    // height: 700px;
+    @include box(max-content);
     overflow: hidden;
   }
 
