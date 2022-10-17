@@ -79,6 +79,7 @@ const createModalContent = (imageElement) => {
     slides.push(slide);
     slider.append(slide);
 };
+//TODO: Insert as Figcaption and Figure, instead of Div > Img?
 
 // CAROUSEL/SLIDER COMPONENT
 const leftButton = qs(".slider__control--left");
