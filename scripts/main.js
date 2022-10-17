@@ -100,7 +100,6 @@ const goToSlide = (slideIdx) => {
     slide.style.transform = `translateX(${120 * (idx - slideIdx)}%)`;
   });
 };
-goToSlide(0);
 
 const activateDot = (dotIdx) => {
   dots.forEach((dot, idx) => {
@@ -111,8 +110,8 @@ const activateDot = (dotIdx) => {
     }
   });
 };
-activateDot(0);
 
+//TODO: Bug where slides don't reset after last slide!
 const nextSlide = () => {
   if (currentSlide === maxSlides - 1) {
     currentSlide = 0;
