@@ -12,20 +12,8 @@ import {
   SLIDE_IN_CLASS,
   SLIDE_OUT_CLASS,
   EXPAND_IMAGE_CLASS,
-  SLIDE_ACTIVATE_CLASS,
   DOT_ACTIVATE_CLASS
 } from './constants/constants.js';
-
-/* 
-TODO: Take clicked on image:
-  1. ~~Open modal~~ 
-  2. ~~Place image as a child of the Modal.~~
-  3. ~~Expand the dimensions of the image~~
-  4. ~~Have the modal match the size of it's content.~~
-  5. ~~Add the next/prev buttons~~
-  6. ~~Add the carousel functionality~~
-  7. Connect Carousel to Gallery Box
-*/
 
 const overlay = qs('.overlay');
 const modal = qs('.modal');
@@ -33,17 +21,15 @@ const modalCloseButton = qs('.modal__close-js');
 const gallery = qs('.gallery');
 
 gallery.addEventListener('click', e => {
-  const imageElement = e?.target;
-  const imageId = +imageElement?.dataset?.slide;
+  const image = e?.target;
 
-  imageElement.addEventListener('click', e => {
-    if (hasClass(overlay, UNMOUNT_CLASS)) {
-      removeClass(overlay, UNMOUNT_CLASS);
+  if (!hasClass(overlay, UNMOUNT_CLASS)) return;
 
-      const el = e?.target;
-      createModalContent(el);
-    }
-  });
+    removeClass(overlay, UNMOUNT_CLASS);
+
+    const imageId = +image.dataset.img - 1;
+    goToSlide(imageId);
+    activateDot(imageId);
 });
 
 const toggleModal = e => {
@@ -72,42 +58,42 @@ const toggleModal = e => {
 modalCloseButton.addEventListener('click', toggleModal);
 overlay.addEventListener('click', toggleModal);
 
+const slider = qs(".slider");
+let slides = [];
+
 /**
  * Adds content to the modal
  * @param {HTMLImageElement} imageElement 
  */
-const createModalContent = imageElement => {
-    const expandedImage = document.createElement("img");
-    expandedImage.classList.add("expanded-image");
-    expandedImage.src = imageElement.src; //take the image src from the clicked image
-    expandedImage.alt = imageElement.alt;
+const createModalContent = (imageElement) => {
+    const slide = document.createElement("div");
+    addClass(slide, "slide");
 
-    const modalBody = modal?.lastElementChild;
-    if (!modalBody?.firstElementChild) {
-        modalBody.prepend(expandedImage);
-    } else {
-        modalBody.firstElementChild.remove(); //delete the previous image
-        modalBody.prepend(expandedImage); //add a new image
-    }
+    const slideImage = document.createElement("img");
+    addClass(slideImage, "slide__img");
+    slideImage.src = imageElement.getAttribute("src");
+    slideImage.alt = imageElement.alt;
+    
+    slide.dataset.slideIndex = imageElement.dataset.img;
+    slide.prepend(slideImage);
+    slides.push(slide);
+    slider.append(slide);
 };
 
 // CAROUSEL/SLIDER COMPONENT
-const slider = qs(".slider");
-const slides = qsa(".slide");
 const leftButton = qs(".slider__control--left");
 const rightButton = qs(".slider__control--right");
 const dotsContainer = qs(".slider__dots");
 const dots = qsa(".slider__dot");
 
-/**
- * To move the slider:
- * Click left button, slides move left (positive X-axis)
- * Click right button, slides move right (negative X-axis)
- */
+window.addEventListener("load", () => {
+  [...gallery?.children].forEach((galleryItem, _) => {
+    createModalContent(galleryItem?.firstElementChild);
+  });
+});
+
 let currentSlide = 0;
-let currentDot = 0;
 const maxSlides = slides.length;
-const maxDots = slides.length;
 
 const goToSlide = (slideIdx) => {
   slides.forEach((slide, idx) => {
@@ -150,8 +136,8 @@ const prevSlide = () => {
 dotsContainer.addEventListener("click", (e) => {
   const dotElement = e?.target;
   const dotId = +dotElement?.dataset?.dotIndex - 1;
-  activateDot(dotId);
   goToSlide(dotId);
+  activateDot(dotId);
 });
 
 rightButton.addEventListener("click", nextSlide);

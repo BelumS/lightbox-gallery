@@ -11,34 +11,16 @@
 </head>
 
 <body>
-<!-- Modal will have next/prev, closing buttons, and possible caption -->
+<!-- Modal will have possible caption -->
   <main class="container">
-    <div class="overlay">
+    <div class="overlay unmount">
       <div class="modal" role="dialog" aria-modal="true">
           <div class="modal__header">
             <span class="modal__close modal__close-js">&times;</span>
           </div>
 
           <div class="modal__body">
-            <section class="slider">
-              <div class="slide slide--1" data-slide="1">
-                <img class="img gallery__img gallery__img--1"
-                  src="https://images.unsplash.com/photo-1621583628955-42fbc37bf424?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80"
-                  alt="beach" />
-              </div>
-              
-              <div class="slide slide--2" data-slide="2">
-                <img class="img gallery__img gallery__img--2"
-                  src="https://images.unsplash.com/photo-1664007226382-e008792e9dae?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDI4fF84ekZIdWhSaHlvfHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
-                  alt="space" />
-              </div>
-              
-              <div class="slide slide--3" data-slide="3">
-                <img class="img gallery__img gallery__img--3"
-                  src="https://images.unsplash.com/photo-1663856542320-639f788ac5b8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDJ8NnNNVmpUTFNrZVF8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80"
-                  alt="forest" />
-              </div>
-            </section>
+            <section class="slider"></section>
 
             <aside class="slider__control-box slider__control-box--left">
               <span class="slider__control slider__control--left">&lt;</span>
@@ -57,26 +39,31 @@
       </div>
     </div>
     
-    <article class="gallery unmount">
-      <div class="gallery__item gallery__item--1" data-slide="1">
+    <article class="gallery">
+      <div class="gallery__item gallery__item--1">
         <img class="img gallery__img gallery__img--1"
           src="https://images.unsplash.com/photo-1621583628955-42fbc37bf424?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80"
-          alt="beach" />
+          alt="beach" 
+          data-img="1"
+          />
       </div>
       
-      <div class="gallery__item gallery__item--2" data-slide="2">
+      <div class="gallery__item gallery__item--2">
         <img class="img gallery__img gallery__img--2"
           src="https://images.unsplash.com/photo-1664007226382-e008792e9dae?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDI4fF84ekZIdWhSaHlvfHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
-          alt="space" />
+          alt="space" 
+          data-img="2"
+          />
       </div>
       
-      <div class="gallery__item gallery__item--3" data-slide="3">
+      <div class="gallery__item gallery__item--3">
         <img class="img gallery__img gallery__img--3"
           src="https://images.unsplash.com/photo-1663856542320-639f788ac5b8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDJ8NnNNVmpUTFNrZVF8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80"
-          alt="forest" />
+          alt="forest" 
+          data-img="3"
+          />
       </div>
     </article>
   </main>
 </body>
-
 </html>

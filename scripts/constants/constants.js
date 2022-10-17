@@ -11,4 +11,5 @@ export const SLIDE_OUT_CLASS = "slide-out";
 
 export const FADE_OUT_TIMER = 1000;
 
+export const DOT_ACTIVATE_CLASS = 'slider__dot--active';
 export const EXPAND_IMAGE_CLASS = 'expanded-image';

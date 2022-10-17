@@ -144,7 +144,6 @@ body {
   background-color: hsl(0deg, 0%, 80%);
   padding: 7px;
   box-shadow: 1px 1px 3px 2px hsla(0deg, 0%, 0%, 0.3);
-  cursor: pointer;
   transition: scale 300ms;
 }
 .gallery__item:is(:hover, :active) {
@@ -159,19 +158,10 @@ body {
   object-fit: cover;
   aspect-ratio: 1/1;
   transition: filter 300ms;
+  cursor: pointer;
 }
 .gallery__item .gallery__img:is(:hover, :active) {
   filter: grayscale(1);
-}
-
-.expanded-image {
-  display: block;
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: cover;
-  object-position: center;
-  width: 100%;
-  height: 100%;
 }
 
 .slider {
@@ -246,7 +236,12 @@ body {
   left: 0;
   transition: transform 400ms;
 }
-.slide > img {
+.slide__img {
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: cover;
+  object-position: center;
   width: 100%;
   height: 100%;
 }

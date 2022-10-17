@@ -73,7 +73,9 @@
     @include absBehind;
     transition: transform 400ms;
 
-    & > img {
+    &__img {
+        @include respImage;
+        object-position: center;
         @include fullBox;
     }
 }
