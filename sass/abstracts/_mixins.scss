@@ -24,14 +24,9 @@
   color: $textColor;
 }
 
+//NOTE: Experimental, as the shadow color may not be converted properly.
 @mixin boxShadowBlack($x, $y, $blur, $spread, $al) {
   box-shadow: $x $y $blur $spread blackShadow($al);
-}
-
-// IMAGES
-@mixin responsiveImage {
-  object-fit: cover;
-  min-height: 100%;
 }
 
 // BORDERS

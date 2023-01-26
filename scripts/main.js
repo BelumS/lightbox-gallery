@@ -88,9 +88,11 @@ const dotsContainer = qs(".slider__dots");
 const dots = qsa(".slider__dot");
 
 window.addEventListener("load", () => {
-  [...gallery?.children].forEach((galleryItem, _) => {
+  const galleryItems = gallery?.children;
+  [...galleryItems].forEach((galleryItem, _) => {
     createModalContent(galleryItem?.firstElementChild);
   });
+  console.log(`The Carousel has been prepared with ${galleryItems.length} slides.`);
 });
 
 let currentSlide = 0;
@@ -133,6 +135,7 @@ const prevSlide = () => {
   activateDot(currentSlide);
 };
 
+//TODO: Create dots from the DOM based on the number of slides.
 dotsContainer.addEventListener("click", (e) => {
   const dotElement = e?.target;
   const dotId = +dotElement?.dataset?.dotIndex - 1;
